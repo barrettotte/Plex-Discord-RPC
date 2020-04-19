@@ -1,0 +1,23 @@
+{
+  "name": "plex-discord-rpc",
+  "version": "1.0.0",
+  "description": "Sync Plex client status to Discord using Discord RPC",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barrettotte/Plex-Discord-RPC.git"
+  },
+  "author": "Barrett Otte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barrettotte/Plex-Discord-RPC/issues"
+  },
+  "homepage": "https://github.com/barrettotte/Plex-Discord-RPC#readme",
+  "dependencies": {
+    "discord-rpc": "^3.1.0"
+  }
+}
