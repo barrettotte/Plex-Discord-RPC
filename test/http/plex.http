@@ -1,0 +1,10 @@
+# testing local Plex server API
+
+@base=https://192.168.10.1:32400
+
+# https://github.com/Arcanemagus/plex-api/wiki/Plex-Web-API-Overview
+
+### Get sessions
+GET {{base}}/status/sessions
+Accept: application/json
+

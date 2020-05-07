@@ -1,15 +1,8 @@
 'use strict';
 
-const DiscordRPC = require('discord-rpc');
+require('./rpc/client');
+require('./model/plex');
 
-//const config = 
-const client = new DiscordRPC.client({transport: 'ipc'});
-
-
-console.log("hello world");
-
-client.login({clientId: config.rpc.id}).then(() =>{
-  setInterval(update, config.rpc.updateInterval);
-}).catch((err) => {
-  throw err;
-});
+console.log('started.');
+// TODO: log started
+// TODO: delete logs older than a week
