@@ -43,6 +43,8 @@ async function update(){
       const rpcData = await buildRpcData(session);
       client.setActivity(rpcData);
       console.log(`[${new Date().toLocaleTimeString()}] Updated RPC`);
+    } else{
+      client.clearActivity();
     }
   } catch(e){
     console.error(e);
