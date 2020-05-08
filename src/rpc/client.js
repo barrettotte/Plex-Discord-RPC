@@ -54,9 +54,9 @@ async function update(){
         instance: false,
       });
     }
-    console.log(`[${new Date().toLocaleTimeString()}] Updated RPC`); // TODO: logger
+    console.log(`[${new Date().toLocaleTimeString()}] Updated RPC`);
   } catch(e){
-    console.error(e); // TODO: logger
+    console.error(e);
   }
 }
 
@@ -64,7 +64,7 @@ client.login({
   clientId: config.rpc.id, 
   connectionTimeout: config.rpc.connectionTimeout
 }).then(() => {
-  console.log('Successfully logged in...'); // TODO: logger
+  console.log('Successfully logged in...');
   update();
   setInterval(() => update(), config.rpc.updateInterval);
 }).catch((err) => {
