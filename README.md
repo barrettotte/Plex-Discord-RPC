@@ -1,9 +1,8 @@
 # Plex-Discord-RPC
 
+![screenshots/watching.png](screenshots/watching.png)
+
 Use Discord RPC to display local Plex session data.
-
-
-![screenshots/anilist-link.png](screenshots/anilist-link.png)
 
 
 ## Background
@@ -15,6 +14,8 @@ But, that's not in the scope for this little side project.
 
 **The only goal is to watch a show on Plex and have it update my Discord activity.**
 
+![screenshots/status.png](screenshots/status.png)
+
 
 ## Approach
 I just wanted to do something pretty straightforward, so here it is.
@@ -24,6 +25,8 @@ I just wanted to do something pretty straightforward, so here it is.
 * Gather session data for current media
 * Update Discord activity/status via Discord RPC with media data
 * Provide link to Anilist entry if session is watching entry from library 'Anime'
+
+![screenshots/anilist.png](screenshots/anilist-link.png)
 
 
 ## Setup
