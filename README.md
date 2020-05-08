@@ -10,7 +10,7 @@ I made this for me; it is really only handling my single use case
 By all means, if someone wants to make this more generic I think they easily could.
 But, that's not in the scope for this little side project.
 
-**The goal is to watch a show on Plex and have it update my Discord activity.**
+**The only goal is to watch a show on Plex and have it update my Discord activity.**
 
 
 ## Approach
@@ -20,6 +20,7 @@ I just wanted to do something pretty straightforward, so here it is.
 * Grab local IP and compare to session IP
 * Gather session data for current media
 * Update Discord activity/status via Discord RPC with media data
+* Provide link to Anilist entry if session is watching entry from library 'Anime'
 
 
 ## Setup

@@ -1,6 +1,6 @@
 # testing local Plex server API
 
-@base=https://192.168.10.1:32400
+@base=http://192.168.10.1:32400
 
 # https://github.com/Arcanemagus/plex-api/wiki/Plex-Web-API-Overview
 
@@ -8,3 +8,25 @@
 GET {{base}}/status/sessions
 Accept: application/json
 
+
+### Relevant data
+#
+#  {
+#    "MediaContainer": {
+#      "Metadata": [
+#        {
+#          "duration": "12345",
+#          "viewOffset": "12345",
+#          "grandparentTitle": "show title",
+#          "index": "episode number",
+#          "librarySectionTitle": "Anime",
+#          "parentIndex": "season number",
+#          "title": "episode title",
+#          "Player": {
+#            "address": "local IP address",
+#            "state": "playing"
+#          }
+#        }
+#      ]
+#    }
+#  }

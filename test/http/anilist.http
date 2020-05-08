@@ -1,0 +1,12 @@
+# testing anilist API
+
+
+### Get a piece of media
+POST https://graphql.anilist.co HTTP/1.1
+Content-Type: application/json
+
+{
+    "query": "{Media(search:\"berserk\" type:ANIME){id title{english} duration}}"
+}
+
+# My Plex grabs TVDB agent -> so grab English title

@@ -2,32 +2,58 @@
 
 const DiscordRPC = require('discord-rpc');
 const client = new DiscordRPC.Client({transport: 'ipc'});
+
 const Plex = require('./plex');
+const Anilist = require('./anilist');
 
 const config = require('../../config/rpc');
 const secrets = require('../../config/secrets');
 
 
-async function update(){
+function trunc(str, n){
+  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+};
 
-  const session = await Plex.getPlexSession(secrets.plex.host, secrets.plex.port);
-  if(session === ''){
-    return console.log('no active sessions');
+function buildEpisodeString(session){
+  const title = trunc(session.episode.title, 16);
+  return `S${session.season.padStart(2,'0')}E${session.episode.index.padStart(3,'0')} - ${title}`
+}
+
+async function buildRpcData(session){
+  var largeText = 'Plex';
+  if(session.library.toUpperCase() === 'ANIME'){
+    const anime = await Anilist.getAnime(session.title);
+    largeText = `anilist.co/anime/${anime['id']}`
   }
-  return; //
-  
+  return {
+    details: trunc(session.title, 32),
+    state: buildEpisodeString(session),
+    startTimestamp: Date.now(),
+    endTimestamp: Date.now() + (session.episode.duration - session.episode.progress),
+    largeImageKey: 'plex-lg',
+    largeImageText: largeText,
+    instance: false,
+  }
+}
+
+function newTime(){
+  return Math.floor(new Date().getTime() / 1000);
+}
+
+async function update(){
   try{
-    client.setActivity({
-      details: 'Watching K-On!',
-      state: 'Season 1',
-      partySize: 1,
-      partyMax: 12,
-      // TODO: startTimestamp
-      // TODO: endTimestamp
-      largeImageKey: 'plex-lg',
-      largeImageText: 'Plex',
-      instance: false,
-    });
+    const session = await Plex.getPlexSession(secrets.plex.host, secrets.plex.port);
+    if(session !== ''){
+      const rpcData = await buildRpcData(session);
+      client.setActivity(rpcData);
+    } else{
+      client.setActivity({
+        details: 'Browsing',
+        largeImageKey: 'plex-lg',
+        largeImageText: 'Plex',
+        instance: false,
+      });
+    }
     console.log(`[${new Date().toLocaleTimeString()}] Updated RPC`); // TODO: logger
   } catch(e){
     console.error(e); // TODO: logger
@@ -40,7 +66,7 @@ client.login({
 }).then(() => {
   console.log('Successfully logged in...'); // TODO: logger
   update();
-  setInterval(() => update(), 25000);
+  setInterval(() => update(), config.rpc.updateInterval);
 }).catch((err) => {
   console.error(err)
 });
