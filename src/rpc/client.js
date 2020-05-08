@@ -10,12 +10,8 @@ const config = require('../../config/rpc');
 const secrets = require('../../config/secrets');
 
 
-function trunc(str, n){
-  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
-};
-
 function buildEpisodeString(session){
-  const title = trunc(session.episode.title, 16);
+  const title = session.episode.title;
   return `S${session.season.padStart(2,'0')}E${session.episode.index.padStart(3,'0')} - ${title}`
 }
 
@@ -26,7 +22,7 @@ async function buildRpcData(session){
     largeText = `anilist.co/anime/${anime['id']}`
   }
   return {
-    details: trunc(session.title, 32),
+    details: session.title,
     state: buildEpisodeString(session),
     startTimestamp: Date.now(),
     endTimestamp: Date.now() + (session.episode.duration - session.episode.progress),
