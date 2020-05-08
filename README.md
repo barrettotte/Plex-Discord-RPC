@@ -3,6 +3,9 @@
 Use Discord RPC to display local Plex session data.
 
 
+![screenshots/anilist-link.png](screenshots/anilist-link.png)
+
+
 ## Background
 I made this for me; it is really only handling my single use case
 (Linux environment and a Plex server on local network).
@@ -25,7 +28,14 @@ I just wanted to do something pretty straightforward, so here it is.
 
 ## Setup
 * configure **config/secrets.js**, rename **config/secrets_template.js**
-* TODO: run as daemon? run when discord starts?
+
+
+## PM2
+* ```sudo npm install pm2@latest -g```
+* ```pm2 start src/plex_discord_rpc.js```
+* ```pm2 startup systemd``` -> run generated command
+* ```pm2 save```
+* ```sudo systemctl start <service>```
 
 
 ## References

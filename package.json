@@ -2,9 +2,9 @@
   "name": "plex-discord-rpc",
   "version": "1.0.0",
   "description": "Sync local Plex client instance to Discord using Discord RPC",
-  "main": "src/index.js",
+  "main": "src/plex_discord_rpc.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/plex_discord_rpc.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "npm start"
   },

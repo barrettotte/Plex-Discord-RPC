@@ -36,25 +36,14 @@ async function buildRpcData(session){
   }
 }
 
-function newTime(){
-  return Math.floor(new Date().getTime() / 1000);
-}
-
 async function update(){
   try{
     const session = await Plex.getPlexSession(secrets.plex.host, secrets.plex.port);
     if(session !== ''){
       const rpcData = await buildRpcData(session);
       client.setActivity(rpcData);
-    } else{
-      client.setActivity({
-        details: 'Browsing',
-        largeImageKey: 'plex-lg',
-        largeImageText: 'Plex',
-        instance: false,
-      });
+      console.log(`[${new Date().toLocaleTimeString()}] Updated RPC`);
     }
-    console.log(`[${new Date().toLocaleTimeString()}] Updated RPC`);
   } catch(e){
     console.error(e);
   }
