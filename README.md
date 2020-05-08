@@ -42,5 +42,6 @@ I just wanted to do something pretty straightforward, so here it is.
 
 
 ## References
+* [Discord RPC Documentation](https://discord.com/developers/docs/topics/rpc)
 * [Unoffical Plex API Documentation](https://github.com/Arcanemagus/plex-api)
 * [Plex Icon](https://www.pngkey.com/detail/u2t4o0r5o0e6i1a9_plex-media-server-transparent-plex-icon/)
