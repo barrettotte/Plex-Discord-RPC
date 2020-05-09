@@ -24,7 +24,7 @@ async function buildRpcData(session){
   // movie
   if(session.title === '' || session.title === undefined){
     return {
-      details: trunc(session.episode.title, 32),
+      details: session.episode.title,
       startTimestamp: Date.now(),
       endTimestamp: Date.now() + (session.episode.duration - session.episode.progress),
       largeImageKey: 'plex-lg',
