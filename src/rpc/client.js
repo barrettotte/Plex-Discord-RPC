@@ -21,6 +21,17 @@ async function buildRpcData(session){
     const anime = await Anilist.getAnime(session.title);
     largeText = `anilist.co/anime/${anime['id']}`
   }
+  // movie
+  if(session.title === '' || session.title === undefined){
+    return {
+      details: trunc(session.episode.title, 32),
+      startTimestamp: Date.now(),
+      endTimestamp: Date.now() + (session.episode.duration - session.episode.progress),
+      largeImageKey: 'plex-lg',
+      largeImageText: largeText,
+      instance: false,
+    } 
+  }
   return {
     details: session.title,
     state: buildEpisodeString(session),
