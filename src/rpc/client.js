@@ -17,30 +17,33 @@ function buildEpisodeString(session){
 
 async function buildRpcData(session){
   var largeText = 'Plex';
+  var state = '';
+
   if(session.library.toUpperCase() === 'ANIME'){
     const anime = await Anilist.getAnime(session.title);
     largeText = `anilist.co/anime/${anime['id']}`
   }
-  // movie
-  if(session.title === '' || session.title === undefined){
-    return {
-      details: session.episode.title,
-      startTimestamp: Date.now(),
-      endTimestamp: Date.now() + (session.episode.duration - session.episode.progress),
-      largeImageKey: 'plex-lg',
-      largeImageText: largeText,
-      instance: false,
-    } 
-  }
-  return {
-    details: session.title,
-    state: buildEpisodeString(session),
-    startTimestamp: Date.now(),
-    endTimestamp: Date.now() + (session.episode.duration - session.episode.progress),
+  const activity = {
     largeImageKey: 'plex-lg',
     largeImageText: largeText,
-    instance: false,
+    instance: false
+  };
+
+  if(session.state === 'paused'){
+    state = '[PAUSED] ';
+  } else{
+    activity['startTimestamp'] = Date.now();
+    activity['endTimestamp'] = Date.now() + (session.episode.duration - session.episode.progress);
   }
+  
+  // movie (no seasons)
+  if(session.title === '' || session.title === undefined){
+    activity['details'] = state + session.episode.title
+  } else{
+    activity['details'] = state + session.title;
+    activity['state'] = buildEpisodeString(session);
+  }
+  return activity;
 }
 
 async function update(){

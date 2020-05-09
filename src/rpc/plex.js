@@ -5,6 +5,7 @@ const ip = require('ip');
 
 function getRelevantData(session){
   return {
+    state: session['Player']['state'],
     library: session['librarySectionTitle'],
     title: session['grandparentTitle'],
     season: session['parentIndex'],
