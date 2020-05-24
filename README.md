@@ -30,15 +30,24 @@ I just wanted to do something pretty straightforward, so here it is.
 
 
 ## Setup
-* configure **config/secrets.js**, rename **config/secrets_template.js**
+* ```npm install```
+* rename **config/secrets_template.js** to **config/secrets.js** and configure 
 
 
-## PM2
+## Run on Startup - Linux Setup with PM2
 * ```sudo npm install pm2@latest -g```
 * ```pm2 start src/plex_discord_rpc.js```
 * ```pm2 startup systemd``` -> run generated command
 * ```pm2 save```
 * ```sudo systemctl start <service>```
+
+
+## Run on Startup - Lazy Windows Setup
+* There are way better methods to do this, but I'm feeling particularly lazy today; I barely get on Windows anymore.
+* Edit **setup/Plex_Discord_RPC.bat** to match current path of repository
+* Create shortcut pointing to **setup/Plex_Discord_RPC.bat**
+* Copy shortcut to ```%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup```
+* If the script fails its not going to start back up. That's another problem for another day.
 
 
 ## References
