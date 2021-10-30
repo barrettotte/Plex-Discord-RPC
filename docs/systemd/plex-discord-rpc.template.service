@@ -1,0 +1,19 @@
+# NOTE: did not work, just leaving here for the future...
+
+[Unit]
+Description=Plex-Discord-RPC
+Documentation=https://github.com/barrettotte/Plex-Discord-RPC
+After=network-online.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+Environment=NODE_ENV=production
+ExecStart=/usr/local/bin/node /home/barrett/repos/Plex-Discord-RPC/src/plex_discord_rpc.js
+WorkingDirectory=/home/barrett/repos/Plex-Discord-RPC/src
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

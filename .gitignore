@@ -2,3 +2,4 @@ node_modules/
 .vscode
 
 config/secrets.js
+plex-discord-rpc.service
