@@ -11,8 +11,10 @@ const secrets = require('../../config/secrets');
 
 
 function buildEpisodeString(session){
-  const title = session.episode.title;
-  return `S${session.season.padStart(2,'0')}E${session.episode.index.padStart(3,'0')} - ${title}`
+  const title = session.episode.title.toString();
+  const season = session.season.toString();
+  const episodeIndex = session.episode.index.toString();
+  return `S${season.padStart(2,'0')}E${episodeIndex.padStart(2,'0')} - ${title}`
 }
 
 async function buildRpcData(session){
@@ -48,7 +50,7 @@ async function buildRpcData(session){
 
 async function update(){
   try{
-    const session = await Plex.getPlexSession(secrets.plex.host, secrets.plex.port);
+    const session = await Plex.getPlexSession(secrets.plex.host, secrets.plex.port, secrets.plex.token);
     if(session !== ''){
       const rpcData = await buildRpcData(session);
       client.setActivity(rpcData);
