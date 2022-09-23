@@ -31,7 +31,7 @@ I just wanted to do something pretty straightforward, so here it is.
 ## Dev Setup
 
 - `npm install`
-- rename `config/secrets_template.js` to `config/secrets.js` and configure
+- rename `config/secrets_template.js` to `config/secrets.js` and configure ([How do I get my Plex token?](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/))
 - `npm run start`
 
 ## Run on Startup - Linux + PM2
