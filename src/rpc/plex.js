@@ -18,8 +18,8 @@ function getRelevantData(session){
   }
 }
 
-async function getPlexSession(host, port){
-  const resp = await axios.get(`http://${host}:${port}/status/sessions`);
+async function getPlexSession(host, port, token){
+  const resp = await axios.get(`http://${host}:${port}/status/sessions?X-Plex-Token=${token}`);
 
   if(resp['status'] === 200){
     const data = resp['data'];
